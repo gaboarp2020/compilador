@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(50, 62, 78);
+    overflow: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-gap: 1%;
+    grid-template-rows: [row1-start] 334px [row1-end row2-start] 1fr [row2-end] 2fr;
+    grid-template-areas:
+        'code code code code code code'
+        'output output output output run clear'
+        'lex lex syn syn sem sem';
+}
+
+#code-area {
+    grid-area: code;
+    margin-top: 5%;
+    outline: none;
+    background: url(../img/numbers.png);
+    background-attachment: local;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+    padding-top: 10px;
+    border-color: #ccc;
+    background-color: rgb(38, 47, 59);
+}
+
+#exec-btn {
+    grid-area: run;
+    background-color: rgb(46, 139, 111);
+    color: rgb(172, 190, 214);
+    font-size: 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    outline: none;
+}
+
+#exec-btn:hover {
+    background-color: rgb(52, 160, 127);
+    color: rgb(189, 209, 236);
+}
+
+#clear-btn {
+    grid-area: clear;
+    background-color: rgb(60, 86, 134);
+    color: rgb(172, 190, 214);
+    font-size: 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    outline: none;
+}
+
+#clear-btn:hover {
+    background-color: rgb(69, 100, 158);
+    color: rgb(189, 209, 236);
+}
+
+#ouput-msg {
+    grid-area: output;
+}
+
+#lexical-analyzer {
+    grid-area: lex;
+}
+
+#syntactic-analyzer {
+    grid-area: syn;
+}
+
+#semantic-analyzer {
+    grid-area: sem;
+}
+
+.box {
+    padding: 18px;
+    background-color: rgb(38, 47, 59);
+    border: none;
+    resize: none;
+    color: white;
+    border-radius: 8px;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style/style.css" />
+    <title>Compilador</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- code area -->
+      <textarea
+        class="box"
+        name="code-area"
+        id="code-area"
+        rows="12"
+      ></textarea>
+
+      <!-- ouput area -->
+      <textarea
+        class="box"
+        disabled
+        name="ouput-msg"
+        id="ouput-msg"
+        rows="5"
+      ></textarea>
+      <button id="exec-btn">RUN</button>
+      <button type="reset" id="clear-btn">Clear</button>
+
+      <!-- lexical analyzer -->
+      <textarea
+        class="box"
+        disabled
+        name="lexical-analyzer"
+        id="lexical-analyzer"
+        rows="10"
+      ></textarea>
+
+      <!-- syntactic analyzer -->
+      <textarea
+        class="box"
+        disabled
+        name="syntactic-analyzer"
+        id="syntactic-analyzer"
+        rows="10"
+      ></textarea>
+
+      <!-- semantic analyzer -->
+      <textarea
+        class="box"
+        disabled
+        name="semantic-analyzer"
+        id="semantic-analyzer"
+        rows="10"
+      ></textarea>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
