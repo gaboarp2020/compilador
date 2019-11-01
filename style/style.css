@@ -12,7 +12,7 @@ body {
     margin: auto;
     display: grid;
     grid-gap: 1%;
-    grid-template-rows: [row1-start] 334px [row1-end row2-start] 1fr [row2-end] 2fr;
+    grid-template-rows: [row1-start] 35% [row1-end row2-start] 20% [row2-end] 25%;
     grid-template-areas:
         'code code code code code code'
         'output output output output run clear'
@@ -21,7 +21,7 @@ body {
 
 #code-area {
     grid-area: code;
-    margin-top: 5%;
+    margin-top: 3%;
     outline: none;
     background: url(../img/numbers.png);
     background-attachment: local;

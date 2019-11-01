@@ -50,8 +50,31 @@ window.onload = () => {
 
     lines.forEach((line, index) => {
       lex.value += "\n    Linea " + (index + 1) + ":\n\t"
+      
+      console.log(line)
+      let charAt = 0
+      let prevArray = []
+      let nextArray = []
+      let lineArray = []
 
-      const expresion = line.split(' ')
+      for (let i = 0; i < line.length; i++) {
+        let char = line[i].charCodeAt(0)
+
+        console.log('Char: ', line[i])
+        console.log('Next: ', line[i+1])
+        if ((char >= 37 && char <= 47) || (char >= 60 && char <= 62)) {
+          if (!(line[i+1].charCodeAt(0) >= 60 && line[i+1].charCodeAt(0) <= 62)) {
+            prevArray = line.slice(charAt, i)
+            charAt = i+1
+            nextArray = line.slice(charAt)
+            lineArray.push(prevArray, line[i], nextArray)
+            console.log('Prev: ', prevArray, '\nnext: ', nextArray, '\nline: ', lineArray)
+          }
+        }
+      }
+      const result = lineArray.join(' ')
+      console.log(result)
+      const expresion = result.split(' ')
 
       expresion.forEach(word => {
         if ((word.charCodeAt(0) >= 65 && word.charCodeAt(0) >= 65) || (word.charCodeAt(0) >= 97 && word.charCodeAt(0) >= 122)) {
