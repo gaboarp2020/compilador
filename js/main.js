@@ -62,19 +62,21 @@ window.onload = () => {
 
         console.log('Char: ', line[i])
         console.log('Next: ', line[i+1])
-        if ((char >= 37 && char <= 47) || (char >= 60 && char <= 62)) {
+        if ((char >= 37 && char <= 47) || (char >= 60 && char <= 62) || (char == 32)) {
           if (!(line[i+1].charCodeAt(0) >= 60 && line[i+1].charCodeAt(0) <= 62)) {
             prevArray = line.slice(charAt, i)
             charAt = i+1
             nextArray = line.slice(charAt)
             lineArray.push(prevArray, line[i], nextArray)
-            console.log('Prev: ', prevArray, '\nnext: ', nextArray, '\nline: ', lineArray)
+            //console.log('Prev: ', prevArray, '\nnext: ', nextArray, '\nline: ', lineArray)
           }
         }
       }
       const result = lineArray.join(' ')
-      console.log('Result: ', result)
+      //console.log('Result: ', result)
       const expresion = result.split(' ')
+      let tokenList = {}
+      let tokenListSimplified = {}
 
       expresion.forEach(word => {
         if ((word.charCodeAt(0) >= 65 && word.charCodeAt(0) >= 65) || (word.charCodeAt(0) >= 97 && word.charCodeAt(0) >= 122)) {
@@ -137,7 +139,17 @@ window.onload = () => {
               break;
           }
 
-          lex.value += word + " => " + type + "\n\t"
+          //lex.value += word + " => " + type + "\n\t"
+          tokenList[type] = word
+
+          if (type === "VAR_NAME") {
+            tokenListSimplified[type] = word
+          } else if (type === "BOOLEAN_VALUE") {
+            tokenListSimplified["VALUE"] = word
+          } else {
+            tokenListSimplified["VAR_TYPE"] = word
+          }
+          
 
         } else if (word.charCodeAt(0) >= 48 && word.charCodeAt(0) <= 57) {
 
@@ -153,7 +165,9 @@ window.onload = () => {
             }
           }
 
-          lex.value += word + " => " + value + "\n\t"
+          //lex.value += word + " => " + value + "\n\t"
+          tokenList[value] = word
+          tokenListSimplified["VALUE"] = word
           
         } else {
           let operator
@@ -246,18 +260,24 @@ window.onload = () => {
 
           if (operator !== "INEXISTENT_TOKEN") {
             if (!/\s/.word) {
-              lex.value += word + " => " + operator + "\n\t"
+              //lex.value += word + " => " + operator + "\n\t"
+              tokenList[operator] = word
+              tokenListSimplified[operator] = word
             }
           }
 
-          
-          const removeSpace = ['']
-          const filteredExpresion = expresion.filter(item => !removeSpace.includes(item))
-
-          console.log('Expresion: ', expresion, ' Filtrado: ', filteredExpresion)
         }
       })
-
+      console.log('Token List: ', tokenList)
+      Object.entries(tokenList).forEach(([key, value]) => {
+        console.log(`${key}: ${value} <---- Token List`);
+        lex.value += value + " => " + key + "\n\t"
+      });
+      Object.entries(tokenListSimplified).forEach(([key, value]) => {
+        console.log(`${key}: ${value} <---- Token List Simplified`);
+      });
+      console.log(tokenList, tokenListSimplified)
+      
     })
 
   })
