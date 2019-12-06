@@ -73,7 +73,7 @@ window.onload = () => {
         }
       }
       const result = lineArray.join(' ')
-      console.log(result)
+      console.log('Result: ', result)
       const expresion = result.split(' ')
 
       expresion.forEach(word => {
@@ -244,7 +244,17 @@ window.onload = () => {
               break;
           }
 
-          lex.value += word + " => " + operator + "\n\t"
+          if (operator !== "INEXISTENT_TOKEN") {
+            if (!/\s/.word) {
+              lex.value += word + " => " + operator + "\n\t"
+            }
+          }
+
+          
+          const removeSpace = ['']
+          const filteredExpresion = expresion.filter(item => !removeSpace.includes(item))
+
+          console.log('Expresion: ', expresion, ' Filtrado: ', filteredExpresion)
         }
       })
 
